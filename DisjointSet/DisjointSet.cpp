@@ -7,9 +7,10 @@ class DisjointSet{
     vector<int> Rank;
     vector<int> Parent;
     vector<int> Size;
-    
+    int ComponentSize;
     DisjointSet(int n){
         Rank.resize(n+1,0);
+        this->ComponentSize = n
         Parent.resize(n+1);
         Size.resize(n+1,1);
         for(int i=0;i<n+1;i++){
@@ -40,6 +41,7 @@ class DisjointSet{
             Parent[ULP_V]=ULP_U;
             Rank[ULP_U]++;
         }
+        ComponentSize = ComponentSize - 1;
     }
     void UnionBySize(int U,int V){
         int ULP_U=FindUltimateParent(U);
@@ -55,6 +57,10 @@ class DisjointSet{
             Parent[ULP_V]=ULP_U;
             Size[ULP_U] += Size[ULP_V];
         }
+        ComponentSize = ComponentSize - 1;
+    }
+    int GetComponentCount(){
+        return this->ComponentSize;
     }
 };
 int main() {
