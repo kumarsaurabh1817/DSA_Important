@@ -8,9 +8,10 @@ class DisjointSet{
     vector<int> Parent;
     vector<int> Size;
     int ComponentSize;
+
     DisjointSet(int n){
         Rank.resize(n+1,0);
-        this->ComponentSize = n
+        this->ComponentSize = n;
         Parent.resize(n+1);
         Size.resize(n+1,1);
         for(int i=0;i<n+1;i++){
@@ -25,6 +26,7 @@ class DisjointSet{
         Parent[Node]=FindUltimateParent(Parent[Node]);
         return Parent[Node];
     }
+    
     void UnionByRank(int U,int V){
         int ULP_U=FindUltimateParent(U);
         int ULP_V=FindUltimateParent(V);
@@ -43,6 +45,7 @@ class DisjointSet{
         }
         ComponentSize = ComponentSize - 1;
     }
+
     void UnionBySize(int U,int V){
         int ULP_U=FindUltimateParent(U);
         int ULP_V=FindUltimateParent(V);
@@ -59,6 +62,7 @@ class DisjointSet{
         }
         ComponentSize = ComponentSize - 1;
     }
+
     int GetComponentCount(){
         return this->ComponentSize;
     }
